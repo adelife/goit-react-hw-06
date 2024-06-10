@@ -2,8 +2,17 @@ import { FaPhone } from 'react-icons/fa6';
 import { IoPersonSharp } from 'react-icons/io5';
 import css from './Contact.module.css';
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 
-const Contact = ({ id, name, number, onDeleteContact}) => {
+import { deleteContact } from "../../redux/contactsSlice";
+
+const Contact = ({ id, name, number}) => {
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    dispatch(deleteContact(id)); 
+  };
+
     return (
       <div className={css.container}>
       <div className={css.contact}>
@@ -20,7 +29,7 @@ const Contact = ({ id, name, number, onDeleteContact}) => {
           {number}
         </p>
       </div>
-      <button className={css.button} type='button' onClick={() => onDeleteContact(id)}>
+      <button className={css.button} type='button' onClick={() => handleDelete(id)}>
         Delete
       </button>
     </div>
@@ -31,7 +40,7 @@ const Contact = ({ id, name, number, onDeleteContact}) => {
       id : PropTypes.number.isRequired,
       name : PropTypes.string.isRequired,
       number : PropTypes.string.isRequired,
-      onDeleteContact : PropTypes.func.isRequired,
+      handleDelete : PropTypes.func.isRequired,
   };
   
   export default Contact;

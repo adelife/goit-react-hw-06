@@ -1,13 +1,24 @@
 import PropTypes from "prop-types"
 import Contact from '../Contact/Contact'
 import css from './ContactList.module.css'
+import { useSelector } from "react-redux";
+import { selectContacts, selectNameFilter } from "../../redux/selectors";
 
-const ContactList = ({ contacts, onDeleteContact }) => {
+const isVisibleContacts = (contacts, filter) => {
+  return contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
+};
+
+const ContactList = () => {
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectNameFilter);
+  const visibleContacts = isVisibleContacts(contacts, filter);
     return (
       <ul className={css.list}>
-        {contacts.map((contact) => (
+        {visibleContacts.map((contact) => (
           <li className={css.item} key={contact.id}>
-            <Contact {...contact} onDeleteContact={onDeleteContact} />
+            <Contact {...contact} />
           </li>
         ))}
       </ul>
