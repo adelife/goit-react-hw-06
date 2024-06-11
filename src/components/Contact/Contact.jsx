@@ -40,7 +40,6 @@ const Contact = ({ id, name, number}) => {
       id : PropTypes.number.isRequired,
       name : PropTypes.string.isRequired,
       number : PropTypes.string.isRequired,
-      handleDelete : PropTypes.func.isRequired,
   };
   
   export default Contact;

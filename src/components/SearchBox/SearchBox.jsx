@@ -1,5 +1,4 @@
 import css from "./SearchBox.module.css"
-import PropTypes from "prop-types"
 import { useDispatch, useSelector } from "react-redux"
 import { changeFilter } from "../../redux/filtersSlice"
 import { selectNameFilter } from "../../redux/selectors"
@@ -25,9 +24,4 @@ const SearchBox = () => {
     );
   };
 
-  SearchBox.propTypes = {
-    value: PropTypes.string.isRequired,
-    onSearch: PropTypes.func.isRequired,
-  };
-  
   export default SearchBox;
